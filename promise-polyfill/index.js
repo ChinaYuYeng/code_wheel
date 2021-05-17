@@ -284,6 +284,7 @@ new Promise((resolve, reject) => {
         外部第二个then
         内部第二个then
         
+        这里要注意：new promise的回调方法是同步执行，在new的过程中就会执行，之后才会调用then（这里链式写法不理解看下面的例子），任何promise状态都可以调用then。promise.resolve().then()
         "外部promise"被resolve，把他的回调队列执行方法推入微任务队列，微任务队列是不同步的，接着then方注册回调函数。"外部第一个then"被执行 接着"内部promise" 把"内部promise"的回调队列的执行函数推入微任务队列
         这时"外部第一个then"结束。"外部第二个then"的回调队列执行方法推入微任务队列。微任务队列依次执行。把"内部第二个then"的回调队列执行方法推入微任务队列，执行
      */
